@@ -9,11 +9,12 @@ A basic app that displays images of random dogs from the internet.
 
 Resources 
 ------------
-• https://dog.ceo/dog-api/documentation/
+• https://dog.ceo/dog-api/documentation/random
 
-•
-•
-•
+• https://github.com/calren/InspirationalQuotesExercise
+
+•https://dog.ceo/api/breeds/image/random
+
 
 
 
