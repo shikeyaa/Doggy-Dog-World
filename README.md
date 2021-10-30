@@ -7,6 +7,12 @@ A basic app that displays images of random dogs from the internet.
 
 • Displays animations
 
+Tech
+------------
+• Android Studio
+
+• Kotlin
+
 Resources 
 ------------
 • https://dog.ceo/dog-api/documentation/random
