@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/bannerImage"
+        android:layout_width="105dp"
+        android:layout_height="109dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/doggydogworld"
+        app:layout_constraintBottom_toTopOf="@+id/ivSrcImage"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSrcImage"
+        android:layout_width="409dp"
+        android:layout_height="354dp"
+        android:layout_marginTop="152dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <Button
+        android:id="@+id/btnRandomImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="156dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="See Who Wants A Bone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/bannerText"
+        android:layout_width="300dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="serif"
+        android:text="   It's a Doggy Dog "
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/ivSrcImage"
+        app:layout_constraintEnd_toStartOf="@+id/bannerImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/weLiveInIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:text="we just live in it!"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        android:textSize="20dp"
+        app:layout_constraintBaseline_toBottomOf="@id/bannerText"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <ImageView
+        android:id="@+id/dogBonePic1"
+        android:layout_width="99dp"
+        android:layout_height="104dp"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/dogBonePic2"
+        android:layout_width="99dp"
+        android:layout_height="104dp"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/dogBonePic3"
+        android:layout_width="99dp"
+        android:layout_height="104dp"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dogBonePic2" />
+
+    <ImageView
+        android:id="@+id/dogBonePic4"
+        android:layout_width="99dp"
+        android:layout_height="104dp"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dogBonePic1"
+        app:layout_constraintStart_toEndOf="@+id/dogBonePic3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
