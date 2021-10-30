@@ -13,7 +13,7 @@ Resources
 
 • https://github.com/calren/InspirationalQuotesExercise
 
-•https://dog.ceo/api/breeds/image/random
+
 
 
 
