@@ -8,10 +8,14 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.core.net.toUri
 import coil.load
+import com.example.doggydogworld.application.ImageApplication
+import com.example.doggydogworld.data.ImageEntity
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels{
+        MainViewModel.MainViewModelFactory((application as ImageApplication).database.imageDao())
+    }
     private lateinit var imageBanner:ImageView
     private lateinit var image1:ImageView
     private lateinit var image2:ImageView
@@ -30,9 +34,6 @@ class MainActivity : AppCompatActivity() {
         image4 = findViewById(R.id.dogBonePic4)
         animateGlobe()
 
-      //  image2 = findViewById(R.id.dogBonePic1)
-       // animateBone()
-
 
         //3. observer sees new image
         viewModel.apiResponse.observe(this, {
@@ -42,13 +43,22 @@ class MainActivity : AppCompatActivity() {
             )
         })
         //1. click button
-        findViewById<Button>(R.id.btnRandomImage).setOnClickListener {
+      //  findViewById<Button>(R.id.btnRandomImage).setOnClickListener {
             //2. new random image gets called
+          //  viewModel.getRandomDog()
+
+      //  }
+        findViewById<Button>(R.id.btnRandomImage).setOnClickListener {
+            val currentImage = viewModel.apiResponse.value!!.imageUrl
+            val previousImage = ImageEntity(imageUrl = currentImage)
             viewModel.getRandomDog()
+            if(previousImage!= null){
+
+                viewModel.insertNewImage(previousImage)
+            }
+            viewModel.deleteLastImage()
         }
-
     }
-
     private fun animateGlobe()  {
         val rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_animation)
         val shake1 = AnimationUtils.loadAnimation(this, R.anim.shake1)
@@ -57,20 +67,12 @@ class MainActivity : AppCompatActivity() {
         val shake4 = AnimationUtils.loadAnimation(this, R.anim.shake4)
 
 
-
         imageBanner.animation = rotate
         image1.animation = shake1
         image2.animation = shake2
         image3.animation = shake3
         image4.animation = shake4
-
-
-
-
     }
-   /* private  fun animateBone() {
-        val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
-        image2.animation = shake
-    }*/
-
 }
+
+//    C:/Users/shike/AndroidStudioProjects/Doggy-Dog-World

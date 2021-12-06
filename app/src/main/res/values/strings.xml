@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Doggy Dog World</string>
+    <string name="current">Current</string>
+    <string name="it_s_a_doggy_dog">It\'s a Doggy Dog</string>
+    <string name="see_who_wants_a_bone">See Who Wants A Bone</string>
+    <string name="we_just_live_in_it">we just live in it!</string>
 </resources>

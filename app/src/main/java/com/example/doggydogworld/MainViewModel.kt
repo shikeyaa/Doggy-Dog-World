@@ -1,18 +1,17 @@
 package com.example.doggydogworld
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.doggydogworld.data.ImageDao
+import com.example.doggydogworld.data.ImageEntity
 import com.example.doggydogworld.network.Dog
 import com.example.doggydogworld.network.DogApi
 import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel(){
+class MainViewModel(private val imageDao: ImageDao) : ViewModel() {
 
-    private  val _apiResponse = MutableLiveData<Dog>()
+    private val _apiResponse = MutableLiveData<Dog>()
     val apiResponse: LiveData<Dog> = _apiResponse
-    //val breedType: String = ""
+
 
 
     init {
@@ -25,9 +24,32 @@ class MainViewModel: ViewModel(){
         }
     }
 
-    fun getRandomBreed(breed: String){
+
+
+    fun insertNewImage(imageEntity: ImageEntity) {
         viewModelScope.launch {
-            _apiResponse.value = DogApi.retrofitService.getRandomBreedImage(breed)
+            imageDao.insertImage(imageEntity)
+        }
+    }
+
+    fun deleteLastImage() {
+        viewModelScope.launch {
+            imageDao.deleteImage()
+        }
+    }
+
+    fun getAllImagesList(): LiveData<List<ImageEntity>> {
+        return imageDao.getAllImages().asLiveData()
+    }
+
+
+   class MainViewModelFactory(val dogImageDao: ImageDao) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return MainViewModel(dogImageDao) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
 }
