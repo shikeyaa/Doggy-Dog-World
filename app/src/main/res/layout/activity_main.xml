@@ -42,33 +42,44 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/previous_dog_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="@string/see_previous_bone_lover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/bannerText"
-        android:layout_width="300dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="281dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="serif"
-        android:text="@string/it_s_a_doggy_dog"
+        android:text="     It's a doggy Dog World"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/ivSrcImage"
         app:layout_constraintEnd_toStartOf="@+id/bannerImage"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/weLiveInIt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="68dp"
         android:text="@string/we_just_live_in_it"
         android:textColor="@color/white"
+        android:textSize="16sp"
+
         android:textStyle="bold|italic"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBottomOf="@id/bannerText"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="112dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ivSrcImage"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/dogBonePic1"

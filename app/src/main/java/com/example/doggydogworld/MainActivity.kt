@@ -1,5 +1,6 @@
 package com.example.doggydogworld
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
@@ -10,9 +11,11 @@ import androidx.core.net.toUri
 import coil.load
 import com.example.doggydogworld.application.ImageApplication
 import com.example.doggydogworld.data.ImageEntity
+//import com.example.doggydogworld.databinding.ActivityLastImageBinding
 
 class MainActivity : AppCompatActivity() {
 
+   // private lateinit var binding: MainActivity
     private val viewModel: MainViewModel by viewModels{
         MainViewModel.MainViewModelFactory((application as ImageApplication).database.imageDao())
     }
@@ -22,10 +25,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var image3:ImageView
     private lateinit var image4:ImageView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val previousButton: Button = findViewById(R.id.previous_dog_image_view)
+
+        previousButton.setOnClickListener {
+         val intent = Intent(this, LastImageActivity::class.java)
+            startActivity(intent)
+}
+      //  (binding.previousButton.setOnClickListener {finish()})
+
+       // val previous: Button = findViewById(R.id.previous_dog_image_view)
 
         imageBanner = findViewById(R.id.bannerImage)
         image1 = findViewById(R.id.dogBonePic1)
@@ -34,30 +46,27 @@ class MainActivity : AppCompatActivity() {
         image4 = findViewById(R.id.dogBonePic4)
         animateGlobe()
 
-
         //3. observer sees new image
         viewModel.apiResponse.observe(this, {
             //4. new image gets loaded
             findViewById<ImageView>(R.id.ivSrcImage).load(
-                it.message.toUri().buildUpon().scheme("https").build()
+                it.message?.toUri()?.buildUpon()?.scheme("https")?.build()
             )
         })
-        //1. click button
-      //  findViewById<Button>(R.id.btnRandomImage).setOnClickListener {
-            //2. new random image gets called
-          //  viewModel.getRandomDog()
 
-      //  }
         findViewById<Button>(R.id.btnRandomImage).setOnClickListener {
             val currentImage = viewModel.apiResponse.value!!.imageUrl
-            val previousImage = ImageEntity(imageUrl = currentImage)
+            val previousImage = currentImage?.let { it1 -> ImageEntity(imageUrl = it1) }
             viewModel.getRandomDog()
-            if(previousImage!= null){
-
-                viewModel.insertNewImage(previousImage)
+            if(previousImage!= null) {
+               viewModel.currentImage()
             }
-            viewModel.deleteLastImage()
+           // viewModel.deleteLastImage()
+           // viewModel.insertNewImage(imageEntity = ImageEntity(id = 0,imageUrl = String()))
         }
+       // (binding.previousButton).setOnClickListener {
+           // (binding.previousButton.setOnClickListener {finish()})
+       // }
     }
     private fun animateGlobe()  {
         val rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_animation)
@@ -65,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         val shake2 = AnimationUtils.loadAnimation(this, R.anim.shake2)
         val shake3 = AnimationUtils.loadAnimation(this, R.anim.shake3)
         val shake4 = AnimationUtils.loadAnimation(this, R.anim.shake4)
-
 
         imageBanner.animation = rotate
         image1.animation = shake1

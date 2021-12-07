@@ -24,7 +24,11 @@ class MainViewModel(private val imageDao: ImageDao) : ViewModel() {
         }
     }
 
-
+    fun currentImage(){
+        viewModelScope.launch {
+            imageDao.getAllImages()
+        }
+    }
 
     fun insertNewImage(imageEntity: ImageEntity) {
         viewModelScope.launch {
